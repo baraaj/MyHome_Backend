@@ -16,7 +16,7 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
   });
-mongoose.connect('mongodb+srv://admin:sportify123@cluster0.colyojz.mongodb.net/?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://admin:admin@cluster0.cfz5sby.mongodb.net/?retryWrites=true&w=majority',{
     
     useNewUrlParser:true,
     useUnifiedTopology:true

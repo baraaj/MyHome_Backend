@@ -4,7 +4,9 @@ const app=express();
 const mongoose=require('mongoose');
 const cors=require('cors');
 const bodyParser=require('body-parser');
-const userRoutes=require('./router/user');
+const userRoutes=require('./Routes/user');
+const BrouillonRoutes=require('./Routes/BrouillonRoutes.js');
+const AnnonceRoutes=require('./Routes/AnnonceRoutes');
 const path = require('path');
 const morgan=require('morgan');
 
@@ -34,16 +36,17 @@ app.use(bodyParser.json());
 app.use('/api/news',newsRoutes);
 app.use('/api/events',eventsRoutes);*/
 app.use('/api/auth',userRoutes);
+app.use('/api/annonce',AnnonceRoutes);
+app.use('/api/brouillon',BrouillonRoutes)
 //app.use(cors());
-const corsOptions ={
+/*const corsOptions ={
     origin:'http://localhost:3001', 
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
-}
+}*/
 app.use(cors(corsOptions));
 app.use('/uploads',express.static('uploads'));
-app.use('/uploadsevent',express.static('uploadsevent'));
-app.use('/uploadsnews',express.static('uploadsnews'));
+
 //app.use(morgan('dev'));
 
 module.exports=app;

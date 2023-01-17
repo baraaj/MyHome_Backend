@@ -16,6 +16,18 @@ const brouillonschema=new Schema({
         type: String,
         trim:true,
     },
+    Email:{
+        type: String,
+        trim:true,
+    },
+    Tel:{
+        type: String,   
+        trim:true,
+    },
+    Prix:{
+        type: String,   
+        trim:true,
+    }
         
     
 },opts)

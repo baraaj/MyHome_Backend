@@ -44,8 +44,9 @@ app.use('/api/brouillon',BrouillonRoutes)
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200
 }*/
-app.use(cors(corsOptions));
+app.use(cors());
 app.use('/uploads',express.static('uploads'));
+app.use('/images',express.static('images'));
 
 //app.use(morgan('dev'));
 

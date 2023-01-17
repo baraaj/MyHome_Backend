@@ -22,6 +22,10 @@ const annonceschema=new Schema({
     Tel:{
         type: String,   
         trim:true,
+    },
+    Prix:{
+        type: String,   
+        trim:true,
     }
     
 },opts)

@@ -2,7 +2,9 @@ const Brouillon=require('../Models/Brouillon');
 const fs=require('fs')
 const multer=require('multer')
 const path=require('path');
-var ObjectId = require('mongodb').ObjectId;
+//var ObjectId = require('mongodb').ObjectId;
+
+const ObjectID=require('mongoose').Types.ObjectId;
 var a=[];
 
 
@@ -31,7 +33,8 @@ const store=(req,res,next)=>{
     let cl=new Brouillon();
     // eslint-disable-next-line no-lone-blocks
     {if(req.file && req.file.originalname)
-        {cl=new Brouillon({...req.body,Logo:req.file.filename}, { strict: false });
+        {cl=new Brouillon({...req.body,Image:req.file.filename}, { strict: false })
+        ;console.log(req.file)
        }
         else{cl=new Brouillon({...req.body}, { strict: false });
         }}
@@ -91,14 +94,21 @@ Brouillon.findByIdAndUpdate(
 })
 }
 }}
+const destroy=async(req,res,next)=>{
+    if (!ObjectID.isValid(req.params.id))
+    return res.status(400).send("ID unknown :"+req.params.id);
+    Brouillon.findByIdAndRemove(
+        req.params.id,
 
+    ).then(()=>{
+        return res.status(203).json("deleted brouillon")
+    }
+    )
+    .catch((error)=>{
+     return res.status(400).json({error})
+    })
 
-
-const destroy=(req, res, next)=>{
-    Brouillon.deleteOne({ _id: req.params.id })
-    .then(() => res.status(200).json({ message: 'Brouillon deleted successfully !'}))
-    .catch(error => res.status(400).json({ error }));
-}
+};
 
 
 module.exports={
